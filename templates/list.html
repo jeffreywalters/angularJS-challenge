@@ -1,0 +1,121 @@
+<div class="container main-content">
+
+  <div class="row">
+    <div class="col-md-12">
+      <form class="form-inline well well-sm">
+        <span class="glyphicon glyphicon-search"></span>
+
+        <div class="form-group">
+          <input type="text" class="form-control" id="title" ng-model="ctrl.search" placeholder="Search Title..." />
+        </div>
+
+        <span class="glyphicon glyphicon-sort-by-attributes"></span>
+
+        <div class="form-group">
+          <select class="form-control" ng-model="ctrl.order">
+						<option value="title" >Title (ASC)</option >
+						<option value="-title" >Title (Desc)</option >
+						<option value="status" >Status (ASC)</option >
+						<option value="-status" >Status (Desc)</option >
+					</select>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      Requests &nbsp;<span style="color:#CCC;text-transform: capitalize;">({{ctrl.order | replaceUnderscores}})</span>
+      <div class="pull-right">
+        <a to='add' ui-sref="add()" class='btn btn-info btn-xs'>
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Request
+          </a>
+      </div>
+    </div>
+    <table class="table table-condensed table-hover">
+      <thead>
+        <tr>
+          <th class="column-id">ID</th>
+          <th>Title
+            <div class="sortables">
+              <span ng-click="ctrl.order = 'title'" class="glyphicon glyphicon-menu-up"></span>
+              <span ng-click="ctrl.order = '-title'" class="glyphicon glyphicon-menu-down"></span>
+            </div>
+          </th>
+          <th>Updated
+            <div class="sortables">
+              <span ng-click="ctrl.order = 'updated_at'" class="glyphicon glyphicon-menu-up"></span>
+              <span ng-click="ctrl.order = '-updated_at'" class="glyphicon glyphicon-menu-down"></span>
+            </div>
+          </th>
+          <th>Created</th>
+          <th>Status
+            <div class="sortables">
+              <span ng-click="ctrl.order = 'status'" class="glyphicon glyphicon-menu-up"></span>
+              <span ng-click="ctrl.order = '-status'" class="glyphicon glyphicon-menu-down"></span>
+            </div>
+          </th>
+          <th class="column-action">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-if="ctrl.filteredRequests.length == 0 && !ctrl.requests.isLoading">
+          <td colspan="6">
+            <div class="alert alert-info">
+              <p class="text-center">
+                No results found for search term '{{ ctrl.search }}'
+              </p>
+            </div>
+          </td>
+        </tr>
+        <tr ng-if="ctrl.requests.isLoading">
+          <td colspan="6" style="height: 300px;background-color:#DDD;position: relative;">
+            <div class="spinner" ng-if="ctrl.requests.isLoading">
+              <span us-spinner="{radius:8, width:5, length: 3, lines:9}"></span >
+              <p >Loading...</p >
+            </div >
+          </td>
+        </tr>
+        <tr ng-repeat="request in ctrl.filteredRequests = (ctrl.requests.data | filter:ctrl.sensitiveSearch | orderBy:ctrl.order)"
+            ng-click="ctrl.selectRequest($event, request)"
+            ng-class="{
+              'bg-success': request.status === 'Approved',
+              'bg-danger': request.status === 'Denied',
+              info: request.id == ctrl.requests.selectedRequest.id
+            }">
+            <td class="column-id">{{ request.id }}</td>
+            <td><a ui-sref="edit({id: request.id})">{{ request.title }}</a></td>
+            <td>{{ request.updated_at | date:"MM/dd/yyyy" }}</td>
+            <td>{{ request.created_at | date:"MM/dd/yyyy" }}</td>
+            <td><button rel="popover" class="mypopover btn btn-link" popover-html="request.options" popover-trigger="focus"  popover-placement="right">{{ request.status }}</button></td>
+            <td>
+              <a ui-sref="edit({id: request.id})" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>              Edit</a>
+              <button class="btn btn-warning btn-xs" ng-click="ctrl.deleteRequest(request.id)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button></td>
+        </tr>
+
+      </tbody>
+
+    </table>
+
+    </div>
+
+  </div>
+  <div class="modal fade bs-confirm-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+        </div>
+        <div class="modal-body">
+          Are You Sure??
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button type="button" id="deleteButton" class="btn btn-primary">Yes, Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>

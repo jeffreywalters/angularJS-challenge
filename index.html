@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="challenge">
+
+<head>
+  <title>AngularJS Challenge</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+    crossorigin="anonymous">
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+  <script src="node_modules/systemjs/dist/system.js"></script>
+  <script>
+    System.config({
+      baseURL: '/',
+      defaultJSExtension: true,
+      // map: {
+      //   "angular": "node_modules/angular/angular.js",
+      //   "angular-resource": "node_modules/angular-resource/angular-resource.js",
+      //   "angular-ui-router": "node_modules/angular-ui-router",
+      //   "angular-spinner": "node_modules/angular-spinner/dist/angular-spinner.js"
+      // }
+    });
+  </script>
+  <style>
+    body {
+      padding-top: 50px;
+    }
+
+    .main-content {
+      padding: 40px 15px;
+    }
+
+    .spinner p {
+      margin-top: 20px;
+    }
+
+    .sortables {
+      display: inline-block;
+      position: relative;
+      width: 20px;
+      height: 20px;
+      vertical-align: middle;
+    }
+
+    .sortables span:first-child {
+      position: absolute;
+      top: -3px;
+    }
+
+    .sortables span:last-child {
+      position: absolute;
+      bottom: 0 !important;
+      top: auto;
+    }
+
+    .sortables span {
+      color: lightgray;
+      font-size: 12px;
+    }
+
+    .sortables span:hover {
+      color: #002a80;
+    }
+
+    table.table tr:last-child td:first-child {
+      border-bottom-left-radius: 5px;
+    }
+
+    table.table tr:last-child td:last-child {
+      border-bottom-right-radius: 5px;
+    }
+    /* Make button look like link: Why?.. need focus attribute */
+
+    button.mypopover,
+    button.mypopover:focus,
+    button.mypopover:active {
+      /* Remove all decorations to look like normal text */
+      background: none;
+      border: none;
+      display: inline;
+      font: inherit;
+      margin-top: -2px;
+      padding: 0;
+      outline: none;
+      outline-offset: 0;
+      /* Additional styles to look like a link */
+      /* color: blue; */
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    /* Remove extra space inside buttons in Firefox */
+    /* button.mypopover::-moz-focus-inner {
+      border: none;
+      padding: 0;
+    } */
+
+    .column-id {
+      width: 30px;
+      text-align: right;
+    }
+
+    .column-action {
+      width: 140px;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">Angular-Challenge</a>
+      </div>
+    </div>
+  </nav>
+
+  <div ui-view></div>
+
+  <!--script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js">
+</script>-->
+  <script src="/node_modules/angular/angular.min.js"></script>
+  <script src="/node_modules/angular-resource/angular-resource.js"></script>
+  <script src="/node_modules/angular-spinner/dist/angular-spinner.js"></script>
+  <script src="/node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="/node_modules/angular-ui-bootstrap/ui-bootstrap-tpls.min.js"></script>
+  <!--script src="/node_modules/angular-ui-bootstrap/ui-bootstrap.min.js"></script-->
+  <script src="main.js">
+
+  </script>
+  <script>
+    // SystemJS.import('main.js');
+  </script>
+  <script>
+    // $('table').popover({ container: 'body' });
+  </script>
+</body>
+
+</html>

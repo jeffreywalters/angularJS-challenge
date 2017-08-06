@@ -1,0 +1,40 @@
+<div class="container main-content">
+
+  <form ng-submit="ctrl.save()" class="form-horizontal" name="editform" novalidate>
+
+    <bs-field value="ctrl.request.id" name='id' type='number' label="ID" required disabled></bs-field>
+
+    <bs-field value="ctrl.request.title" name='title' type='text' label="Title" required></bs-field>
+
+    <bs-field value="ctrl.request.updated_at | date" name='updated_at' type='text' label="Updated At" disabled required></bs-field>
+
+    <bs-field value="ctrl.request.created_at | date" name='created_at' type='text' label="Created At" disabled required></bs-field>
+
+    <bs-field value="ctrl.request.status" name='status' type='select' label="Status" required>
+      <option value="Approved">Approved</option>
+      <option value="Denied">Denied</option>
+      <option value="Pending">Pending</option>
+    </bs-field>
+
+
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type='submit' class='btn btn-primary' ng-disabled="editform.$invalid">
+        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+        Save
+      </button>
+        <button type="button" class='btn btn-warning' ng-click="ctrl.reset()">
+        <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
+        Reset Values
+      </button>
+        <a ui-sref="list" class="btn btn-default">
+        <span class="glyphicon glyphicon-backward" aria-hidden="true"></span>
+        Cancel
+      </a>
+      </div>
+    </div>
+  </form>
+  <pre>{{ctrl.request | json}}</pre>
+  <pre>{{editform.title | json}}</pre>
+
+</div>
