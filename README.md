@@ -5,8 +5,8 @@ A rewrite of a previous ReactJS app in AngularJS
 I wanted an application to code in order to help me get better at AngularJS so I rewrote an app previous written in ReactJS. See [react-challenge](https://github.com/jeffreywalters/react-challenge). 
 
 #### Thoughts on Best Practices
- - No \$scope except \$scope.emit or \$scope.broadcast
- - No ng-controller
+ - No \$scope except \$scope.emit or \$scope.broadcast (Angular 2 killed it for a reason)
+ - No ng-controller (gone in Angular 2)
  - Scope all directives - componitize directives
 
  #### Articles that influenced my coding
