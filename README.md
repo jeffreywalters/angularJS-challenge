@@ -18,6 +18,6 @@ I wanted an application to code in order to help me get better at AngularJS so I
 #### Under the Hood
  - [AngularJS 1.3](https://github.com/angular/angular.js)
  - [BootStrap](https://github.com/twbs/bootstrap)
- - [UI Bottstrap](https://github.com/angular-ui/bootstrap)
+ - [UI Bootstrap](https://github.com/angular-ui/bootstrap)
  - [Typescript](https://github.com/Microsoft/TypeScript)
  - [Angular UI Router](https://github.com/angular-ui/ui-router)
